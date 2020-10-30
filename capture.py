@@ -73,7 +73,7 @@ def extract_from_youtube_url(youtube_url):
 
 def main():
     while True:
-        url = input('url을 입력해주세요: ')
+        url = input('ppt를 추출할 유튜브 url을 입력해주세요: ')
         if url == '0':
             break
         extract_from_youtube_url(url)

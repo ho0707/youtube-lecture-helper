@@ -1,3 +1,6 @@
 venv/
 test.py
 images/
+audio_download.py
+audio/
+video/
