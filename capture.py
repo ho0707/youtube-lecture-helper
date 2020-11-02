@@ -32,8 +32,11 @@ def extract_from_youtube_url(youtube_url):
     url = time.search(youtube_url)
     if url:
         youtube_url = youtube_url[:url.start()]
-        
-    video = pafy.new(youtube_url)
+    
+    try:
+        video = pafy.new(youtube_url)
+    except:
+        raise ValueError('url이 잘못 되었습니다.')
     best = video.getbest()
     title = video.title
     tmp_title = ''
@@ -97,7 +100,7 @@ def extract_from_youtube_url(youtube_url):
 
 def main():
     while True:
-        url = input('ppt를 추출할 유튜브 url을 입력해주세요: ')
+        url = input('ppt를 추출할 유튜브 url을 입력해주세요(종료 0): ')
         if url == '0':
             break
         extract_from_youtube_url(url)

@@ -27,7 +27,7 @@ def download(youtube_url):
 
 def main():
     while True:
-        url = input('다운로드 받을 유튜브 url을 입력해주세요: ')
+        url = input('다운로드 받을 유튜브 url을 입력해주세요(종료 0): ')
         if url == '0':
             break
         download(url)
