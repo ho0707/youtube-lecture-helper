@@ -2,8 +2,19 @@ import cv2
 import numpy as np
 import os
 import pafy
+import re
 
 def download(youtube_url):
+    index = re.compile('&index=')
+    url = index.search(youtube_url)
+    if url:
+        youtube_url = youtube_url[:url.start()]
+    time = re.compile('&t=')
+    url = time.search(youtube_url)
+    if url:
+        youtube_url = youtube_url[:url.start()]
+
+
     video = pafy.new(youtube_url)
     best = video.getbest()
 
