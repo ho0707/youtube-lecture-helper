@@ -36,7 +36,25 @@ def extract_from_youtube_url(youtube_url):
     video = pafy.new(youtube_url)
     best = video.getbest()
     title = video.title
-
+    tmp_title = ''
+    usable1 = re.compile("[가-힣]?")
+    usable2 = re.compile("[a-zA-Z]?")
+    usable3 = re.compile("[!@#$%^()\[\]_+-=}{';.,]?")
+    
+    for char in title:
+        if char == ' ':
+            tmp_title = tmp_title + char
+            continue
+        y1 = usable1.match(char)
+        y2 = usable2.match(char)
+        y3 = usable3.match(char)
+        print(char)
+        print(y1, y2, y3)
+        if y1.end() + y2.end() + y3.end():
+            tmp_title = tmp_title + char
+        
+    title = tmp_title
+    print(title)
     if not(os.path.isdir('images')):
         os.makedirs(os.path.join('images'))
     if not(os.path.isdir('images\\' + title)):
