@@ -23,9 +23,9 @@ def imwrite(filename, img, params=None):
 def save(frame, image, title):
     print('Saved frame number : ' + str(frame))
     sec = frame // 30
-    # h, m, s = get_time(sec)
-    # imwrite("images/{}/{:0>2}h {:0>2}m {:0>2}s.jpg".format(title, h, m, s), image)
-    imwrite("images/{}/{}.jpg".format(title, sec), image)
+    h, m, s = get_time(sec)
+    imwrite("images/{}/{:0>2}h {:0>2}m {:0>2}s.jpg".format(title, h, m, s), image)
+    # imwrite("images/{}/{}.jpg".format(title, sec), image)
 
 def divide_and_conquer(vidcap, left, right, left_image, right_image, title):
     global save_frames
