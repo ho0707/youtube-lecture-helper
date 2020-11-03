@@ -6,6 +6,7 @@ capture.py는 ppt를 추출해줍니다.
 
 video_download.py는 동영상을, audio_download.py는 오디오를 다운로드 할 수 있습니다.
 
+capture_from_local.py는 로컬파일이 있을때 ppt를 추출해줍니다.
 
 
 ## 사용한 라이브러리
@@ -22,6 +23,6 @@ youtube-dl==2020.9.20
 ## 사용법
 
 용도에 맞는 모듈을 실행시킨후 유튜브url을 입력하면 됩니다.
-
+capture_from_local.py는 실행후 상대경로를 입력하면 됩니다.
 
 
