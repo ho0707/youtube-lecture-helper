@@ -3,6 +3,7 @@ import numpy as np
 import os
 import pafy
 import re
+import datetime
 
 save_frames = []
 def imwrite(filename, img, params=None): 
@@ -21,13 +22,14 @@ def imwrite(filename, img, params=None):
 
 def save(frame, image, title):
     print('Saved frame number : ' + str(frame))
-    sec = frame // 29.97
-    h, m, s = get_time(sec)
-    imwrite("images/{}/{:0>2}h {:0>2}m {:0>2}s.jpg".format(title, h, m, s), image)
+    sec = frame // 30
+    # h, m, s = get_time(sec)
+    # imwrite("images/{}/{:0>2}h {:0>2}m {:0>2}s.jpg".format(title, h, m, s), image)
+    imwrite("images/{}/{}.jpg".format(title, sec), image)
 
 def binary_search(vidcap, left, right, left_image, right_image, title):
     global save_frames
-    if right - left < 35:
+    if right - left < 20:
         #저장
         save_frames.append(right)
         return
@@ -47,8 +49,11 @@ def binary_search(vidcap, left, right, left_image, right_image, title):
         # 뭔가 이상한곳
         return
     if diff_sum_left > 2000 and diff_sum_right > 2000:
-        binary_search(vidcap, left, mid, left_image, mid_image, title)
-        binary_search(vidcap, mid, right, mid_image, right_image, title)
+        if right - left < 600:
+            binary_search(vidcap, mid, right, mid_image, right_image, title)
+        else:
+            binary_search(vidcap, left, mid, left_image, mid_image, title)
+            binary_search(vidcap, mid, right, mid_image, right_image, title)
         return
     if diff_sum_left > 2000:
         binary_search(vidcap, left, mid, left_image, mid_image, title)
@@ -58,6 +63,8 @@ def binary_search(vidcap, left, right, left_image, right_image, title):
         return
 
 def get_time(sec):
+    if sec < 0: 
+        return 0, 0, 0
     hour, remain = sec // 3600, sec % 3600
     minute, sec = remain // 60, remain % 60
     return hour, minute, sec
@@ -127,8 +134,10 @@ def main():
         url = input('ppt를 추출할 유튜브 url을 입력해주세요(종료 0): ')
         if url == '0':
             break
+        start = datetime.datetime.now()
         extract_from_youtube_url(url)
-
+        end = datetime.datetime.now()
+        print(end - start)
 
 if __name__ == '__main__':
     main()
