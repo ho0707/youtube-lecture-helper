@@ -8,6 +8,8 @@ video_download.py는 동영상을, audio_download.py는 오디오를 다운로�
 
 capture_from_local.py는 로컬파일이 있을때 ppt를 추출해줍니다.
 
+ppt 캡쳐시 저장된 사진의 이름은 강의에서 해당 장면이 나타난 시간입니다.
+
 
 ## 사용한 라이브러리
 
