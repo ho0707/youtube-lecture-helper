@@ -13,12 +13,16 @@ def download(youtube_url):
     url = time.search(youtube_url)
     if url:
         youtube_url = youtube_url[:url.start()]
-
-
-    video = pafy.new(youtube_url)
+    cnt = 0
+    while cnt < 10:
+        try:
+            video = pafy.new(youtube_url)
+            break
+        except:
+            cnt += 1
+    else:
+        raise ValueError('url이 잘못되었습니다.')
     best = video.getbest()
-
-    title = video.title
 
     if not(os.path.isdir('video')):
         os.makedirs(os.path.join('video'))
@@ -27,7 +31,7 @@ def download(youtube_url):
 
 def main():
     while True:
-        url = input('다운로드 받을 유튜브 url을 입력해주세요(종료 0): ')
+        url = input('url을 입력해주세요(종료 0): ')
         if url == '0':
             break
         download(url)

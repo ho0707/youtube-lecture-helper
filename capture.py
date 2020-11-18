@@ -79,14 +79,17 @@ def extract_from_youtube_url(youtube_url):
     url = time.search(youtube_url)
     if url:
         youtube_url = youtube_url[:url.start()]
-    
-    try:
-        video = pafy.new(youtube_url)
-    except:
-        raise ValueError('url이 잘못 되었습니다.')
+    cnt = 0
+    while cnt < 10:
+        try:
+            video = pafy.new(youtube_url)
+            break
+        except:
+            cnt += 1
+    else:
+        raise ValueError('url이 잘못되었습니다.')
     best = video.getbest()
     title = video.title
-
     tmp_title = ''
     usable1 = re.compile("[가-힣]?")
     usable2 = re.compile("[a-zA-Z]?")
