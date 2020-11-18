@@ -46,7 +46,6 @@ def divide_and_conquer(vidcap, left, right, left_image, right_image, title):
     diff = np.abs(diff)
     diff_sum_right = np.sum(diff>10)
     if diff_sum_left < 2000 and diff_sum_right < 2000:
-        # 뭔가 이상한곳
         return
     if diff_sum_left > 2000 and diff_sum_right > 2000:
         if right - left < 600:
