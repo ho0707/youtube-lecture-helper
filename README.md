@@ -19,7 +19,8 @@ opencv-python==4.4.0.44
 pafy==0.5.5
 youtube-dl==2020.9.20
 ```
-
+youtube-dl은 requirements.txt에 있는거 말고 항상 최신버전으로 받아주세요.
+최신버전이 나오면 이전버전이 지원안되는 경우가 있네요.
 
 
 ## 사용법
