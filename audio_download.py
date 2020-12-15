@@ -3,6 +3,7 @@ import numpy as np
 import os
 import pafy
 
+
 def download(youtube_url):
     cnt = 0
     while cnt < 10:
@@ -20,6 +21,8 @@ def download(youtube_url):
         os.makedirs(os.path.join('audio'))
 
     best.download('audio\\')
+    os.rename('audio\\'+title+'.webm', 'audio\\'+title+'.mp3')
+
 
 def main():
     while True:
@@ -28,7 +31,6 @@ def main():
             break
         download(url)
 
+
 if __name__ == '__main__':
     main()
-
- 
